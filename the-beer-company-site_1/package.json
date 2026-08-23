@@ -1,0 +1,12 @@
+{
+  "name": "the-beer-company-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Beer Company — marketing site (static HTML/CSS/JS + one Vercel serverless function for email signup)",
+  "scripts": {
+    "dev": "npx serve ."
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
