@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Beer Company — Brooklyn, NY</title>
+<meta name="description" content="A lager. Made in Brooklyn, NY. Coming soon to stores." />
+
+<!-- Open Graph / social preview. Swap og-image.jpg for a real one (1200x630). -->
+<meta property="og:title" content="The Beer Company" />
+<meta property="og:description" content="A lager. Made in Brooklyn, NY." />
+<meta property="og:image" content="/images/og-image.jpg" />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="/images/favicon.png" />
+<link rel="stylesheet" href="/styles.css" />
+
+<!--
+  Defined here (not in script.js) so it exists before any <img> below
+  starts loading — image error events can fire before an end-of-body
+  script has finished loading, and this must never miss one.
+-->
+<script>
+  window.tbcImgFallback = function (img) {
+    if (img.dataset.placeholderApplied) return;
+    img.dataset.placeholderApplied = 'true';
+    var div = document.createElement('div');
+    div.className = 'img-placeholder';
+    div.textContent = img.dataset.placeholderLabel || 'Image missing';
+    img.replaceWith(div);
+  };
+</script>
+</head>
+<body>
+
+<!-- ============================================================
+     AGE GATE
+     Standard practice for alcohol-brand sites. Remove this whole
+     <div id="age-gate">…</div> block (and its CSS/JS hooks) if you
+     don't want it — see README.
+============================================================= -->
+<div id="age-gate" aria-modal="true" role="dialog" aria-labelledby="age-gate-title">
+  <div class="age-gate-card">
+    <p class="age-gate-mark">THE BEER COMPANY</p>
+    <h1 id="age-gate-title">Are you 21 or older?</h1>
+    <p class="age-gate-sub">Please confirm your age to enter.</p>
+    <div class="age-gate-actions">
+      <button id="age-yes" type="button" class="btn btn-primary">Yes, I'm 21+</button>
+      <button id="age-no" type="button" class="btn btn-ghost">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="age-blocked" hidden>
+  <p>You must be 21 or older to view this site.</p>
+</div>
+
+<div id="site-content">
+
+<!-- ============================================================
+     NAV
+============================================================= -->
+<header class="site-header">
+  <a href="#top" class="wordmark">The Beer Company</a>
+  <nav class="site-nav">
+    <a href="#notify">Get Notified</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       Image slot: /images/can-front.jpg
+  ============================================================= -->
+  <section class="hero" id="lager">
+    <div class="hero-copy">
+      <h1>Uncomplicate your life.</h1>
+      <p class="hero-sub">The modern beer aisle is an endless interrogation of aggressive logos, gimmick flavors, and desperation to sell a personality. Strip away the pitch, the fluff, and the illusion that more options equal a better time. What remains is a pure, exceptional beer made for a simple reality: fewer decisions lead to more happiness.</p>
+      <a href="#notify" class="btn btn-primary">Get notified when it drops</a>
+    </div>
+    <div class="hero-image">
+      <img
+        src="/images/can-front.jpg"
+        alt="The Beer Company lager — plain silver can with white label"
+        data-placeholder-label="can-front.jpg&#10;portrait, can + shadow"
+        onerror="window.tbcImgFallback(this)"
+      />
+    </div>
+  </section>
+
+  <!-- ============================================================
+       AROUND TOWN — lifestyle scene gallery
+       Image slots (landscape, ~2400×1600 recommended):
+         /images/scene-park.jpg    (Central Park) — still a placeholder
+         /images/scene-street.jpg  (NYC street)
+         /images/scene-deli.jpg    (bodega/deli fridge)
+  ============================================================= -->
+  <section class="around-town" id="around-town">
+    <div class="scene-grid">
+      <figure class="scene-card">
+        <img
+          src="/images/scene-deli.jpg"
+          alt="The Beer Company lager sitting in a deli fridge next to other beers"
+          onerror="window.tbcImgFallback(this)"
+        />
+      </figure>
+
+      <figure class="scene-card">
+        <img
+          src="/images/scene-street.jpg"
+          alt="Walking down a New York City street with The Beer Company lager"
+          onerror="window.tbcImgFallback(this)"
+        />
+      </figure>
+
+      <figure class="scene-card">
+        <img
+          src="/images/scene-park.jpg"
+          alt="Drinking The Beer Company lager at a bar"
+          data-placeholder-label="scene-park.jpg&#10;2400×1600"
+          onerror="window.tbcImgFallback(this)"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT / PRODUCT DETAIL STRIP
+       Image slot: /images/can-back.jpg
+  ============================================================= -->
+  <section class="about-strip">
+    <div class="about-inner">
+      <h3>Just a beer.</h3>
+      <div class="about-grid">
+        <div class="can-back-shot">
+          <img
+            src="/images/can-back.jpg"
+            alt="The back of The Beer Company's can, showing the label copy"
+            data-placeholder-label="can-back.jpg"
+            onerror="window.tbcImgFallback(this)"
+          />
+        </div>
+        <div class="spec-list">
+          <div class="spec-row"><span>Style</span><span>Lager</span></div>
+          <div class="spec-row"><span>Size</span><span>12 fl. oz.</span></div>
+          <div class="spec-row"><span>ABV</span><span>6%</span></div>
+          <div class="spec-row"><span>Brewed</span><span>Brooklyn, NY</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EMAIL SIGNUP
+       See README for how to wire this to a real email service
+       (Formspree, Mailchimp, ConvertKit, etc.) or the included
+       /api/subscribe serverless function.
+  ============================================================= -->
+  <section class="notify" id="notify">
+    <div class="notify-card">
+      <h2>Be the first to know.</h2>
+      <p>We'll email you the moment it hits shelves. No spam, just the one email.</p>
+
+      <form id="signup-form" novalidate>
+        <label for="email" class="sr-only">Email address</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="you@email.com"
+          required
+          autocomplete="email"
+        />
+        <button type="submit" class="btn btn-primary">Notify me</button>
+      </form>
+
+      <p id="form-message" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER — includes the required government warning copy.
+============================================================= -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <span class="wordmark">The Beer Company</span>
+    <span class="footer-loc">Brooklyn, NY</span>
+  </div>
+  <p class="gov-warning">
+    GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic
+    beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic
+    beverages impairs your ability to drive a car or operate machinery, and may cause health problems.
+  </p>
+  <p class="footer-fine">&copy; <span id="year"></span> The Beer Company. Please drink responsibly. Must be 21+.</p>
+</footer>
+
+</div><!-- /#site-content -->
+
+<script src="/script.js"></script>
+</body>
+</html>
